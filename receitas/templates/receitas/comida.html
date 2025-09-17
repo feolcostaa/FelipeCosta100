@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %} Comidas - Minhas Receitas {% endblock %}
+{% block content %}
+
+<h2 class="text-2xl font-bold mb-6">Receitas de Comidas</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <!-- Exemplo de card-->
+    <div class="bg-gray-100 p-4 rounded-lg shadow hover:shadow-lg transition">
+        <img src="{% static 'img/comida.jpg' %}" alt="Comida" class="rounded-lg mb-4">
+        <h3 class="text-lg font-semibold">Bolo de Chocolate</h3>
+        <p class="text-gray-600">Um bolo clássico, com sabor intenso de chocolate, textura macia e perfeito para
+            qualquer ocasião, seja com café ou como sobremesa.</p>
+    </div>
+
+    <div class="bg-gray-100 p-4 rounded-lg shadow hover:shadow-lg transition">
+        <img src="{% static 'img/comida.jpg' %}" alt="Comida" class="rounded-lg mb-4">
+        <h3 class="text-lg font-semibold">Risoto de Cogumelos Selvagens</h3>
+        <p class="text-gray-600">Cremoso, aromático e sofisticado, este risoto valoriza o sabor terroso dos cogumelos,
+            sendo uma excelente opção vegetariana e elegante.</p>
+    </div>
+
+    <div class="bg-gray-100 p-4 rounded-lg shadow hover:shadow-lg transition">
+        <img src="{% static 'img/comida.jpg' %}" alt="Comida" class="rounded-lg mb-4">
+        <h3 class="text-lg font-semibold">Sopa de Legumes Nutritiva</h3>
+        <p class="text-gray-600">Perfeita para dias frios ou para uma refeição leve, essa sopa reúne diversos legumes em
+            um caldo saboroso e reconfortante.</p>
+    </div>
+
+    <div class="bg-gray-100 p-4 rounded-lg shadow hover:shadow-lg transition">
+        <img src="{% static 'img/comida.jpg' %}" alt="Comida" class="rounded-lg mb-4">
+        <h3 class="text-lg font-semibold">Torta de Limão Cremosa</h3>
+        <p class="text-gray-600">Uma base crocante de biscoito, recheio cremoso e azedinho de limão, coberta com um
+            merengue dourado. Uma sobremesa elegante e irresistível.</p>
+    </div>
+
+    <div class="bg-gray-100 p-4 rounded-lg shadow hover:shadow-lg transition">
+        <img src="{% static 'img/comida.jpg' %}" alt="Comida" class="rounded-lg mb-4">
+        <h3 class="text-lg font-semibold">Salada Mediterrânea Fresca</h3>
+        <p class="text-gray-600">Colorida, leve e cheia de sabor, essa salada combina ingredientes típicos da dieta
+            mediterrânea para uma refeição saudável e refrescante.</p>
+    </div>
+
+    <div class="bg-gray-100 p-4 rounded-lg shadow hover:shadow-lg transition">
+        <img src="{% static 'img/comida.jpg' %}" alt="Comida" class="rounded-lg mb-4">
+        <h3 class="text-lg font-semibold">Frango Assado com Ervas</h3>
+        <p class="text-gray-600">Suculento por dentro e dourado por fora, este frango assado é realçado com um mix de
+            ervas frescas e alho, perfeito para um almoço especial.</p>
+    </div>
+
+</div>
+{% endblock %}
