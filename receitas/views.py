@@ -40,3 +40,6 @@ def pesquisar_receitas(request):
         'resultados': resultados,
     }
     return render(request, 'receitas/pesquisa.html', context)
+
+def sobre_nos(request):
+    return render(request, 'receitas/sobre_nos.html')
