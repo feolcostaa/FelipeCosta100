@@ -21,31 +21,26 @@
 <body class="bg-gray-100 text-gray-900">
     <!-- Este comando HTML e CSS significa que a página terá um fundo cinza claro e texto cinza escuro -->
     <header class="bg-gray-900 text-white p-6 shadow-lg rounded-b-lg"> <!-- mb-4 sm:mb-0 -->
-        <div class="container mx-auto relative flex flex-col sm:flex-row items-center justify-beteween">
+        <div class="container mx-auto relative flex flex-col sm:flex-row items-center justify-center">
             <div class="flex items-center ">
                 <div class=" absolute inset-0 flex items-center justify-center">
-                    <div class="flex items-center">
                     <div class="text-4xl mr-4">
                         <i class="fas fa-utensils"></i> <!-- Alfredo Walter Regner Neto   -->
                     </div>
                     <h1 class="text-4xl font-bold text-center sm:text-left">Minhas Receitas Deliciosas</h1>
-                    </div>
                 </div>
             </div>
-             <nav class="relative z-10 flex space-x-4">
-                <a href="{% url 'home' %}" class="text-gray-300 hover:text-white">
-                        <i class="fas fa-home"></i> Home
-                </a>
+            <nav class="mr-auto relative z-10 flex space-x-4">
+                <i class="fas fa-home"><a href="{%url 'home'%}" class="text-gray-300 hover:text-white mx-2">Home</a></i>
             </nav>
             <nav class="ml-auto relative z-10 flex space-x-4">
-                <a href="{% url 'sobre_nos' %}" class="text-gray-300 hover:text-white">Sobre Nos</a>
-                <a href="{% url 'contato' %}" class="text-gray-300 hover:text-white">Contato</a>
-            </nav>
-
+                <a href="{%url 'sobre_nos'%}" class="text-gray-300 hover:text-white">Sobre
+                    Nós</a>
+                <a href="{%url 'contato'%}" class="text-gray-300 hover:text-white">Contato</a>
                 <!-- <a href="{%url 'home'%}?categoria=comida" class="text-gray-300 hover:text-white mx-2">Comida</a>
                 <a href="{%url 'home'%}?categoria=sobremesa" class="text-gray-300 hover:text-white mx-2">Sobremesa</a>
                 <a href="{%url 'home'%}?categoria=drink" class="text-gray-300 hover:text-white mx-2">Drink</a> -->
-            
+
             </nav>
         </div>
     </header>
@@ -58,4 +53,3 @@
         <p>&copy; 2025 Minhas Receitas. Todos os direitos reservados a Kaiki</p>
     </footer>
 </body>
-</html>

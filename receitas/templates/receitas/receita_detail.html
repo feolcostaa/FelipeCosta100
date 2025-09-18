@@ -1,31 +1,32 @@
 {% extends "receitas/base.html" %}
+
+{% block title %} {{ receita.title }} - Minhas Receitas {% endblock %}
+
 {% block content %}
-<!-- <main class="container mx-auto p-6 mt-8 bg-white rounded-lg shadow-md"> -->
-<h2 class="text-2xl font-semibold mb-6 text-center">
-    {% if query %}
-    Resultados para: "{{ query }}"
-    {% else %}
-    Nenhum termo pesquisado
-    {% endif %}
-</h2>
-<div class="flex flex-wrap justify-center gap-6">
-    {% if resultados %}
-    {% for receita in resultados %}
-    <div
-        class="w-full sm:w-[calc(50%-1.5rem)] lg:w-[calc(33.333%-1.5rem)] bg-gray-50 p-6 rounded-lg shadow-mb hover: shadow=lg transition-shadow duration-300 ease-in-out">
-        <img src="{{ receita.image.url }}" alt="[Imagem de {{ receita.title }}]"
-            class="w-full h-48 object-cover rounded-md mb-4">
-        <h3 class="text-x1 font-bold mb-2 text-gray-800">{{ receita.title }}</h3>
-        <p class="text-gary-600 mb-4">{{ receita.description|truncatewords:20 }}</p>
-        <a href="{% url 'receita_detail' id=receita.id%}"
-            class="inline-block bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-full transition-colors duration-300">
-            Ver Receita &rarr;
-        </a>
+<div class="space-y-6">
+    
+    <h1 class="text-4xl font-bold text-center text-gray-800">{{ receita.title }}</h1>
+    
+    {% if receita.image %}
+    <div class="w-full max-w-4xl mx-auto">
+        <img src="{{ receita.image.url }}" alt="Imagem de {{ receita.title }}"
+            class="w-full h-auto max-h-[600px] object-cover rounded-lg shadow-lg">
     </div>
-    {% endfor %}
-    {% else %}
-    <p class="text-center text-gray-600 col-span-full">Nenhuma receita encontrada.</p>
     {% endif %}
+
+    <p class="text-lg text-center text-gray-600 max-w-3xl mx-auto">{{ receita.description }}</p>
+
+    <div class="max-w-3xl mx-auto p-6 bg-gray-50 rounded-lg">
+        <h2 class="text-2xl font-semibold mb-4 border-b-2 border-orange-500 pb-2">Ingredientes</h2>
+        <div class="prose max-w-none text-gray-700 mb-6">
+            {{ receita.ingredients|linebreaks }}
+        </div>
+
+        <h2 class="text-2xl font-semibold mb-4 border-b-2 border-orange-500 pb-2">Modo de Preparo</h2>
+        <div class="prose max-w-none text-gray-700">
+            {{ receita.instructions|linebreaks }}
+        </div>
+    </div>
+
 </div>
-<!-- </main> -->
- {% endblock %}
+{% endblock %}

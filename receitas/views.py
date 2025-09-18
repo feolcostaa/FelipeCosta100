@@ -1,5 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Receita
+from django.urls import reverse
+from django.core.mail import send_mail
+from .forms import ContatoForm
 
 def home(request):
     categoria_slug = request.GET.get('categoria')
@@ -43,3 +46,26 @@ def pesquisar_receitas(request):
 
 def sobre_nos(request):
     return render(request, 'receitas/sobre_nos.html')
+
+def contato(request):
+    if request.method == 'POST':
+
+        form = ContatoForm(request.POST)
+        if form.is_valid():
+            nome = form.cleaned_data['nome']
+            email = form.cleaned_data['email']
+            mensagem = form.cleaned_data['mensagem']
+
+            send_mail(
+                f'Mensagem de {nome}',
+                f'Mensagem de {nome} ({email}):\n\n{mensagem}', email, ['seu_email_para_receber@exemplo.com'], fail_silently= False
+            )
+
+            return redirect(reverse('sucesso'))
+    else:
+        form = ContatoForm()
+
+    return render(request, 'receitas/contato.html', {'form' : form})
+
+def sucesso(request):
+    return render(request, 'receitas/sucesso.html')

@@ -127,5 +127,8 @@ import os # Certifique-se que esta linha está no topo do arquivo se não esiver
 from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-MEDIA_URL = '/media/'
+MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') #Cria uma pasta 'media' na raiz do seu projeto
+
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_FILE_PATH = BASE_DIR/'emails'
