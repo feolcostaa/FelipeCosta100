@@ -1,45 +1,26 @@
-{% extends 'receitas/base.html' %}
+{% extends 'base.html' %}
+
+{% block title %}Contato - Receitas do Felipe{% endblock %}
 
 {% block content %}
-<div class="container mx-auto mt-8 p-4">
-    <h1 class="text-3x1 font-bols text-white mb-4 text-center">Fale Conosco</h1>
-    <p class="text-gray-400 text-center mb-6">Estamos ansiosos para ouvir você! Envie suas dúvidas, sugestões ou apenas
-        um olá.</p>
-
-    <div class="bg-gray-800 p-8 rounded-lg shadow-lg max-w-lg mx-auto">
-        <form class="space-y-6" action="{% url 'contato' %}" method="POST">
-            {% csrf_token %}
-            <div>
-                <label for="{{ form.nome.id_for_label  }}" class="block text-sm font-medium text-gray-400">Nome</label>
-                {{ form.nome }}
-                {% if form.nome.errors %}
-                    <p class="text-red-500 text-xs italic">
-                {{ form.nome.errors }}</p>
-                {% endif %}
-            </div>
-
-            <div>
-                <label for="{{ form.email.id_for_label }}" class="block text-sm font-medium text-gray-400">Email</label>
-                {{ form.email }}
-                {% if form.email.errors %}
-                    <p class="text-red-500 text-xs italic"> {{ form.email.errors }}</p>
-                {% endif %}
-            </div>
-
-            <div>
-                <label for="{{ form.email.id_for_label }}"
-                    class="block text-sm font-medium text-gray-400">Mensagem</label>
-                {{ form.mensagem }}
-                {% if form.mensagem.errors %}
-                    <p class="text-red-500 text-xs italic"> {{ form.mensagem.errors }}</p>
-                {% endif %}
-            </div>
-
-            <div class="text-center">
-                <button type="submit"
-                    class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">Enviar</button>
-            </div>
-        </form>
-    </div>
+<div class="form-container">
+    <h2>Entre em Contato</h2>
+    <p>Tem alguma dúvida, sugestão ou quer compartilhar sua receita conosco? Preencha o formulário abaixo!</p>
+    <form action="{% url 'contato' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" name="nome" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="mensagem">Mensagem</label>
+            <textarea id="mensagem" name="mensagem" rows="6" required></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Enviar Mensagem</button>
+    </form>
 </div>
 {% endblock %}

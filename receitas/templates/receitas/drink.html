@@ -1,14 +1,23 @@
-{% extends "base.html" %}
-{% load static %}
-{% block title %} Comidas - Minhas Receitas {% endblock %}
-{% block content %}
+{% extends 'base.html' %}
 
-<h2 class="text-2x1 font-bold mb-6">Receitas de Drinks</h2> 
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-    <div class="bg-gray-100 p-4 rounded-lg shadow over:shadow-lg transition">
-        <img src="{% static 'img/drink1.jpg'%}" alt="drink" class="rounded-lg mb-4">
-        <h3 class="text-lg font-semibold">Caipirinha</h3>
-        <p class="text-gray-600">Tradicional brasileira e refrescante.</p>
+{% block title %}Comidas - Receitas do Felipe{% endblock %}
+
+{% block content %}
+<h2>Nossas Receitas de Drinks</h2>
+<div class="card-grid">
+    {% for receita in receitas %}
+    <div class="card">
+        {% if receita.imagem %}
+            <img src="{{ receita.imagem.url }}" alt="{{ receita.nome }}">
+        {% endif %}
+        <div class="card-content">
+            <h3><a href="{% url 'receita_detail' receita.id %}">{{ receita.nome }}</a></h3>
+            <p>{{ receita.ingredientes|truncatewords:20 }}</p>
+            <a href="{% url 'receita_detail' receita.id %}" class="btn-details">Ver Receita</a>
+        </div>
     </div>
+    {% empty %}
+    <p>Nenhuma receita de drink encontrada.</p>
+    {% endfor %}
 </div>
 {% endblock %}

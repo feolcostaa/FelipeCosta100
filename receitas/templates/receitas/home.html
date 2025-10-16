@@ -1,53 +1,32 @@
-{% extends "receitas/base.html" %}
-{% block title %} Home - Minhas Receitas {% endblock %}
-{% block content %}
+{% extends 'base.html' %}
 
-<!-- Conteúdo principal da página -->
-<!-- Seção de Pesquisa -->
-<section class="container mx-auto mt-8 p-4 flex justify-center">
-    <form method="get" action="{% url 'pesquisar_receitas' %}"
-        class="w-full max-w-lg flex bg-white rounded-full shadow-md overflow-hidden">
-        <input type="text" name="q" placeholder="pesquisar receitas... "
-            class="flex-grow p-3 text-gray-700 focus:ring-2 focus-ring-orange-500 rounded-l-full pl-5">
-        <button type="submit"
-            class="bg-orange-500 hover:bg-orange-600 text-white p-4 px-6 rounded-r-full transition duration-300 ease-in-out flex items-center justify-center">
-            <i class="fas fa-search mr-2"></i> Pesquisar
-        </button>
+{% block title %}Página Inicial - Receitas do Felipe{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <h1>Bem-vindo ao Receitas do Felipe</h1>
+    <p>Sua fonte de inspiração para pratos incríveis!</p>
+    <form action="{% url 'pesquisa' %}" method="get" class="search-form">
+        <input type="search" name="q" placeholder="Buscar receitas..." required>
+        <button type="submit">Buscar</button>
     </form>
 </section>
 
-<nav class="relative justify-center my-4 z-10 flex space-x-4">
-    <a href="{%url 'home'%}" class="text-white mx-2 px-4 py-2 rounded-full bg-orange-500 hover:bg-orange-600 font-semibold">Todas</a>
-    <a href="{%url 'home'%}?categoria=comida" class="text-black mx-2 px-4 py-2 rounded-full bg-gray-300 hover:bg-gray-500 font-semibold">Comida</a>
-    <a href="{%url 'home'%}?categoria=sobremesa" class="text-black mx-2 px-4 py-2 rounded-full bg-gray-300 hover:bg-gray-500 font-semibold">Sobremesa</a>
-    <a href="{%url 'home'%}?categoria=drink" class="text-black mx-2 px-4 py-2 rounded-full bg-gray-300 hover:bg-gray-500 font-semibold">Drink</a>
-
-</nav>
-
-<!-- <main class="container mx-auto p-6 mt-8 bg-white rounded-lg shadow-md"> -->
-<!-- Título da seção de receitas -->
-<h2 class="text-2xl font-semibold mb-4 text-center">Nossas últimas receitas</h2>
-<!-- Container Flexível para as receitas -->
-<div class="flex flex-wrap justify-center gap-6">
+<h2>Receitas em Destaque</h2>
+<div class="card-grid">
     {% for receita in receitas %}
-    <!-- Lista de Receitas -->
-    <div
-        class="w-full sm:w-[calc(50%-1.5rem)] lg:w-[calc(33.333%-1.5rem)] bg-gray-50 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out">
-        {% if receita.image %}
-        <img src="{{receita.image.url}}" alt="Imagem de {{receita.title}}"
-            class="w-full h-48 objevt-cover rounded-md mb-4">
+    <div class="card">
+        {% if receita.imagem %}
+            <img src="{{ receita.imagem.url }}" alt="{{ receita.nome }}">
         {% endif %}
-        <h3 class="text-xl font-bold mb-2 text-gray-800">{{ receita.title }}</h3>
-        <p class="text-gray-600 mb-4">{{ receita.description|truncatewords:20}}</p>
-        <a href="{% url 'receita_detail' receita.id %}" class="text-orange-600 hover:text-orange-800 font-semibold">Ver
-            Receita &rarr;</a>
+        <div class="card-content">
+            <h3><a href="{% url 'receita_detail' receita.id %}">{{ receita.nome }}</a></h3>
+            <p>{{ receita.ingredientes|truncatewords:20 }}</p>
+            <a href="{% url 'receita_detail' receita.id %}" class="btn-details">Ver Receita</a>
+        </div>
     </div>
-    {% empty%}
-    <p class="text-center text-gray-500 col-span-full">Nenhuma receita encontrada.</p>
+    {% empty %}
+    <p>Nenhuma receita em destaque encontrada.</p>
     {% endfor %}
 </div>
 {% endblock %}
-<!-- ss</main> -->
-</body>
-
-</html>
